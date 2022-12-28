@@ -1,30 +1,21 @@
-import {AddUser ,Close, Edit, Pluse, Search, Trash, Uncheck, Check } from "../assets/icons"
+import {AddUser ,Close, Pluse, Search, Trash } from "../assets/icons"
+
 import Header from "../components/header"
+import TodoItem from "../components/todoItem"
+
 export default function UserProfile() {
 	return (
-		<div className="row d-flex h-100 dashed">
+		<div className="row d-flex h-100"  style={{border: "1px dashed #000"}}>
 			<div className="col-md-10 " style={{borderRight:"1px dashed #000"}} >
-				<Header name={"Emrah Baba"} />
+				<Header name="User Name"/>
 				<div className="row">
 					<div className="col">
 						{/* BEGIN: ROW */}
 						<div className="row">
 							{/* BEGIN: COL */}
 							<div className="col-md-4">
-								<div className="card justify-content-center align-items-center p-3 m-3"
-									style={{borderRadius:" 15px", border:"1px dashed #000", width:"250px"}}>
-									test
-								</div>
-								
-								<div className="card justify-content-center align-items-center p-3 m-3"
-									style={{borderRadius:" 15px", border:"1px dashed #000", width:"250px"}}>
-									test
-								</div>
-								<div className="card justify-content-center align-items-center p-3 m-3"
-									style={{borderRadius:" 15px", border:"1px dashed #000", width:"250px"}}>
-									test
-								</div>
-						</div>
+								<TodoItem />
+							</div>
 						{/* BEGIN: COL */}
 						</div>
 						{/* BEGIN: ROW */}
