@@ -9,8 +9,16 @@ export default function Index() {
 	return (
 		<Layout>
 			<Routes>
-				<Route path="/" element={<Login/>} />
-				<Route path="/register" element={<Register />} />
+				<Route path="/" element={
+					<NoRequireAuth>
+						<Login />
+					</NoRequireAuth>
+				} />
+				<Route path="/register" element={
+					<NoRequireAuth>
+						<Register />
+					</NoRequireAuth>
+				} />
 				<Route path="/dashboard" element={
 						<RequireAuth>
 							<Dashboard />
@@ -29,6 +37,15 @@ export default function Index() {
 			</Routes>
 		</Layout>
 	)
+}
+function NoRequireAuth({ children }) {
+	const { token } = useSelector(state => state.auth); 
+	let location = useLocation();
+	
+	if (token) {
+		return <Navigate to="/dashboard" state={{ from: location }} replace />;
+	}
+	return children;
 }
 
 function RequireAuth({ children }) {
