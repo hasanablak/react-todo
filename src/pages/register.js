@@ -3,7 +3,7 @@ import {useState} from "react"
 import axios from "axios";
 import { ModifidedSwal } from "../helpers/modifided-swal";
 
-export default function Login() {
+export default function Register() {
 
 	const [credenditinal, setCredentinal] = useState({name:"", email:"", password:""});
 	const navigate = useNavigate();
