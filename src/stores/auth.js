@@ -9,11 +9,10 @@ export const authSlice = createSlice({
 	reducers:	{
 		setAuth: (state, {payload: payload}) => {
 			if (payload) {
-				state.token = payload.token;
+				state.token = axios.defaults.headers.common['Authorization'] = payload.token_type+" "+payload.token;
 				state.user = payload.user;
 				localStorage.setItem("token", payload.token);
 				localStorage.setItem("user", JSON.stringify(payload.user));
-				axios.defaults.headers.common['Authorization'] = payload.token;
 			} else {
 				state.token = "";
 				state.user = {};
