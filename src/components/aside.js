@@ -1,14 +1,18 @@
-import {AddUser ,Close, Pluse, Search, Trash } from "../assets/icons"
+import { AddUser, Pluse, Search, Trash } from "../assets/icons"
+
+import { useSelector } from "react-redux"
+import LogoutUser from "./logoutUser";
 export default function Aside() {
+	const { user } = useSelector(state => state.auth);
 	return (
 			<>
 				<div className="card">
 					<div className="row d-flex justify-content-center align-items-center">
 						<div className="col-8 align-items-end flex-column">
-							<span className="px-1">Hasan ABLAK</span>
+							<span className="px-1">{user.name}</span>
 						</div>
 						<div className="col-4">
-							<button className="btn btn-outline-primary"><Close/></button>
+							<LogoutUser/>
 						</div>
 					</div>
 				</div>
