@@ -11,13 +11,13 @@ export const authSlice = createSlice({
 			if (payload) {
 				state.token = payload.token;
 				state.user = payload.user;
-				sessionStorage.setItem("token", payload.token);
-				sessionStorage.setItem("user", JSON.stringify(payload.user));
+				localStorage.setItem("token", payload.token);
+				localStorage.setItem("user", JSON.stringify(payload.user));
 			} else {
 				state.token = "";
 				state.user = {};
-				sessionStorage.removeItem("token");
-				sessionStorage.removeItem("user");
+				localStorage.removeItem("token");
+				localStorage.removeItem("user");
 			}
 		}
 	},
