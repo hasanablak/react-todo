@@ -30,7 +30,7 @@ export default function Login() {
 									<div className="form-outline flex-fill">
 										<label className="form-label" htmlFor="name">Full name</label>
 										<input
-											 
+											required
 											type="text"
 											id="name"
 											onChange={(v) => setCredentinal(f => ({ ...f, name: v.target.value }))}
