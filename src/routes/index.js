@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import {Login, Register, Dashboard, UserProfile, TodoActions} from "../pages"
+import { Login, Register, Dashboard, UserProfile, TodoActions } from "../pages"
+import { useSelector } from "react-redux";
 //import { useSelector } from 'react-redux'
 import Layout from "../layouts";
 import AuthLayout from "../layouts/authLayout";
@@ -31,23 +32,22 @@ export default function Index() {
 }
 
 function RequireAuth({ children }) {
-	let auth = true;
+	const { token } = useSelector(state => state.auth); 
 	let location = useLocation();
-	/*
-	if (!auth) {
+	
+	if (!token) {
 		return <Navigate to="/" state={{ from: location }} replace />;
 	}
-	*/
 	return <AuthLayout>{children}</AuthLayout>;
 }
 
 function RequireAdmin({ children }) {
-	let admin = true;
+	
+	const { user } = useSelector(state => state.auth); 
 	let location = useLocation();
-	/*
-	if (!admin) {
-		return <Navigate to="/" state={{ from: location }} replace />;
+	
+	if (user.is_admin == 0) {
+		return <Navigate to="/dashboard" state={{ from: location }} replace />;
 	}
-	*/
-	return children;
+	return <AuthLayout>{children}</AuthLayout>;
 }
