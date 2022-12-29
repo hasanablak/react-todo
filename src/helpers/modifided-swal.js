@@ -6,7 +6,6 @@ export function ModifidedSwal() {
 			popup: 'dashed',
 			confirmButton: 'form-control dashed',
 			cancelButton: 'form-control dashed'
-		},
-		buttonsStyling: false
+		}
 	});
 }
