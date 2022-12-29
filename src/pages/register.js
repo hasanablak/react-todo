@@ -1,22 +1,33 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {useState} from "react"
 import axios from "axios";
+import { ModifidedSwal } from "../helpers/modifided-swal";
 
 export default function Login() {
 
 	const [credenditinal, setCredentinal] = useState({name:"", email:"", password:""});
-
-	const sendRegisterForm = (e) => {
+	const navigate = useNavigate();
+	const sendRegisterForm = async (e) => {
 		e.preventDefault();
 
-		axios.post(process.env.REACT_APP_API_URL+"/register", credenditinal)
+		await axios.post(process.env.REACT_APP_API_URL + "/register", credenditinal)
 			.then((e) => {
-				console.log(e);
-			})
-			.catch((e) => {
-			console.log(e)
-		})
-		
+				registerWasSuccessfully()
+			});
+
+	}
+
+	const registerWasSuccessfully = async ()  => {
+
+		const { value: goTo } = await ModifidedSwal().fire({
+			icon: "success",
+			title: "Your register was successfully",
+			confirmButtonText: "Do you want login?"
+		});
+
+		if (goTo) {
+			navigate("/?email="+credenditinal.email)
+		}
 	}
 
 	return (
