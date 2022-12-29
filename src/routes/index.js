@@ -1,8 +1,8 @@
-
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import {Login, Register, Dashboard, UserProfile, TodoActions} from "../pages"
 //import { useSelector } from 'react-redux'
 import Layout from "../layouts";
+import AuthLayout from "../layouts/authLayout";
 export default function Index() {
 
 	return (
@@ -38,7 +38,7 @@ function RequireAuth({ children }) {
 		return <Navigate to="/" state={{ from: location }} replace />;
 	}
 	*/
-	return children;
+	return <AuthLayout>{children}</AuthLayout>;
 }
 
 function RequireAdmin({ children }) {
