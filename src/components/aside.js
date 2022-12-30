@@ -43,10 +43,12 @@ export default function Aside() {
 				<div className="row mt-3">
 					<div className="col">
 						{user.is_admin ? <BtnCreateUser/> : "" }
-						{user.is_admin ? <BtnAddTodo/> : ""}
-						<button className="btn btn-outline-primary">
-							<Search/>
-						</button>
+						<BtnAddTodo />
+						{user.is_admin ?
+							<button className="btn btn-outline-primary">
+								<Search />
+							</button>
+							: ""}
 						{user.is_admin ? <BtnShowHideTrash/> : ""}
 						
 					</div>

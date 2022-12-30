@@ -57,8 +57,10 @@ export default function CreateTodo() {
 	}
 
 	useEffect(() => {
-		fetchAllUser();
-	}, []);
+		if (authUser?.is_admin === 1) {
+			fetchAllUser();
+		}
+	}, [authUser]);
 
 	return (
 		<div className="col-md-10 " style={{borderRight:"1px dashed #000"}} >
@@ -77,15 +79,18 @@ export default function CreateTodo() {
 												id="todo"
 												onChange={(v) => setTodo(f => ({ ...f, title: v.target.value }))}
 												className="form-control form-control-lg" />
-										</div>
+									</div>
+									{authUser?.is_admin === 1
+										?
 										<div className="form-outline flex-fill mt-3">
 											<label className="form-label" htmlFor="email">Assign to User</label>
-												<select value={assignUser} onChange={(v) => setAssignUser(v.target.value)} className="form-control form-control-lg">
+											<select value={assignUser} onChange={(v) => setAssignUser(v.target.value)} className="form-control form-control-lg">
 												{users?.map((user, index) => (
 													<option key={index} value={user.id}>{user.name}</option>
 												))}
 											</select>
 										</div>
+										: ""}
 										<div className="form-outline flex-fill my-3 mt-3">
 											<input
 											type="submit"

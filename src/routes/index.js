@@ -47,9 +47,9 @@ export default function Index() {
 				} />
 
 				<Route path="/create-todo" element={
-						<RequireAdmin>
+						<RequireAuth>
 							<CreateTodo />
-						</RequireAdmin>
+						</RequireAuth>
 				} />
 
 				<Route path="/update-todo" element={
