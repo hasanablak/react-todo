@@ -1,10 +1,13 @@
-import { AddUser, Pluse, Search, Trash } from "../assets/icons"
+import { Search } from "../assets/icons"
 
 import { useSelector } from "react-redux"
 import LogoutUser from "./logoutUser";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import BtnShowHideTrash from "./BtnShowHideTrash";
+import BtnCreateUser from "./BtnCreateUser";
+import BtnAddTodo from "./BtnAddTodo";
 
 export default function Aside() {
 	const { user } = useSelector(state => state.auth);
@@ -39,18 +42,13 @@ export default function Aside() {
 
 				<div className="row mt-3">
 					<div className="col">
-						<button className="btn btn-outline-primary">
-							<AddUser/>
-						</button>
-						<button className="btn btn-outline-primary">
-							<Pluse/>
-						</button>
+						{user.is_admin ? <BtnCreateUser/> : "" }
+						{user.is_admin ? <BtnAddTodo/> : ""}
 						<button className="btn btn-outline-primary">
 							<Search/>
 						</button>
-						<button className="btn btn-outline-primary">
-							<Trash/>
-						</button>
+						{user.is_admin ? <BtnShowHideTrash/> : ""}
+						
 					</div>
 				</div>
 				{user.is_admin ? 
@@ -61,14 +59,14 @@ export default function Aside() {
 						</div>
 					</div>
 					<div className="col-12 col-sm-12 mt-3">
-						{searchUser?.map((user) => (
-							<div className="card">
+						{searchUser?.map((user, key) => (
+							<div className="card" key={key}>
 								<div className="row d-flex justify-content-center align-items-center">
 									<div className="col d-flex align-items-end flex-column">
 										<span>{user.name}</span>
 									</div>
 									<div className="col-3 d-flex">
-										<Link to={`/users/${user.id}`} className="btn btn-outline-primary">></Link>
+										<Link to={`/users/${user.id}`} state={{user}} className="btn btn-outline-primary">></Link>
 									</div>
 								</div>
 							</div>
