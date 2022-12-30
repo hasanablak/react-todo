@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { Login, Register, Dashboard, UserProfile, TodoActions } from "../pages"
+import { Login, Register, Dashboard, UserProfile, CreateTodo, UpdateTodo, CreateUser, UpdateUser } from "../pages"
 import { useSelector } from "react-redux";
 //import { useSelector } from 'react-redux'
 import Layout from "../layouts";
@@ -31,9 +31,33 @@ export default function Index() {
 				} />
 				<Route path="/users/:user/todo/:todo" element={
 						<RequireAdmin>
-							<TodoActions />
+							<CreateTodo />
 						</RequireAdmin>
 				} />
+				
+				<Route path="/create-user" element={
+						<RequireAdmin>
+							<CreateUser />
+						</RequireAdmin>
+				} />
+				<Route path="/update-user" element={
+						<RequireAdmin>
+							<UpdateUser />
+						</RequireAdmin>
+				} />
+
+				<Route path="/create-todo" element={
+						<RequireAdmin>
+							<CreateTodo />
+						</RequireAdmin>
+				} />
+
+				<Route path="/update-todo" element={
+						<RequireAdmin>
+							<UpdateTodo />
+						</RequireAdmin>
+				} />
+
 			</Routes>
 		</Layout>
 	)
@@ -63,7 +87,7 @@ function RequireAdmin({ children }) {
 	const { user } = useSelector(state => state.auth); 
 	let location = useLocation();
 	
-	if (user.is_admin == 0) {
+	if (user.is_admin === 0) {
 		return <Navigate to="/dashboard" state={{ from: location }} replace />;
 	}
 	return <AuthLayout>{children}</AuthLayout>;

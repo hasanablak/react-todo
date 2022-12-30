@@ -5,7 +5,7 @@ import { ModifidedSwal } from "../helpers/modifided-swal";
 
 export default function Register() {
 
-	const [credenditinal, setCredentinal] = useState({name:"", email:"", password:""});
+	const [credenditinal, setCredentinal] = useState({name:"", email:"", password:"", is_admin: ""});
 	const navigate = useNavigate();
 	const sendRegisterForm = async (e) => {
 		e.preventDefault();
