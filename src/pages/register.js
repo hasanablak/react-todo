@@ -5,8 +5,13 @@ import { ModifidedSwal } from "../helpers/modifided-swal";
 
 export default function Register() {
 
-	const [credenditinal, setCredentinal] = useState({name:"", email:"", password:"", is_admin: ""});
+	const [credenditinal, setCredentinal] = useState({ name: "", email: "", password: "", is_admin: "" });
+	
+	const [name, setName] = useState("");
+	const [surname, setSurname] = useState("");
 	const navigate = useNavigate();
+	const fullName = `${name} ${surname}`;
+
 	const sendRegisterForm = async (e) => {
 		e.preventDefault();
 
@@ -38,13 +43,23 @@ export default function Register() {
 							<h6 className="mb-3 header">Register</h6>
 							<div className="card justify-content-center align-items-center p-3 w-100">
 								<form className="d-flex mb-4 flex-column" onSubmit={sendRegisterForm}>
-									<div className="form-outline flex-fill">
-										<label className="form-label" htmlFor="name">Full name</label>
+								<div className="form-outline flex-fill">
+									{fullName}
+										<label className="form-label" htmlFor="name"> name</label>
 										<input
 											required
 											type="text"
 											id="name"
-											onChange={(v) => setCredentinal(f => ({ ...f, name: v.target.value }))}
+											onChange={(v) => setName(v.target.value)}
+											className="form-control form-control-lg" />
+									</div>
+									<div className="form-outline flex-fill">
+										<label className="form-label" htmlFor="name">surname</label>
+										<input
+											required
+											type="text"
+											id="name"
+											onChange={(v) => setSurname(v.target.value)}
 											className="form-control form-control-lg" />
 									</div>
 									<div className="form-outline flex-fill mt-3">
