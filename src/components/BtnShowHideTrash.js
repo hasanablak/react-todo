@@ -11,7 +11,7 @@ export default function BtnShowHideTrash() {
 	return (
 		<button className={`btn btn-outline-primary ${fetchParams['only-trashed'] == 1 && "active"}`}
 			onClick={() => {
-				dispatch(setTrashed(fetchParams['only-trashed'] == 1 ? 0 : 1));
+				dispatch(setTrashed(fetchParams['only-trashed'] == 1 ? null : 1));
 			}}
 		>
 			<Trash/>

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const fetchSlice = createSlice({
 	name:	'counter',
 	initialState:	{
-		"only-trashed": "0",
+		"only-trashed": null,
 		"status": null,
 		"deleted": false
 	},
