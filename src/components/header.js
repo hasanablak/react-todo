@@ -30,7 +30,7 @@ export default function Header({title = "Dashboard", checkbox = true }) {
 				<div className="col-md-2 offset-md-5">
 				<button className={`btn btn-outline-primary mx-1 ${fetchParams.status == "1" && "active"}`}
 					onClick={() => {
-						dispatch(setStatus(fetchParams.status == 1 ? "" : "1"));
+						dispatch(setStatus(fetchParams.status == 1 ? null : "1"));
 					}}>
 					<Check />
 				</button>
